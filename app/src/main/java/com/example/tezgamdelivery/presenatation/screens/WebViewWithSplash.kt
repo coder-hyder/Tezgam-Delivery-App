@@ -1,5 +1,6 @@
 package com.example.tezgamdelivery.presenatation.screens
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
@@ -45,6 +46,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun WebViewWithSplash(url: String) {
     val context = LocalContext.current
@@ -150,9 +152,33 @@ fun WebViewWithSplash(url: String) {
     }
 
     LaunchedEffect(isPageLoaded) {
-        if (isPageLoaded) {
-            showSplash = false
-        }
+//        if (isPageLoaded) {
+//            showSplash = false
+//        }
+
+            if (!isPageLoaded) {
+
+
+                delay(20_000)
+                if (!isPageLoaded) {
+                    Toast.makeText(
+                        context,
+                        "Internet slow, please wait — it may take some time",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+
+                delay(10_000)
+                if (!isPageLoaded) {
+                    loadError = true
+                    showSplash = false
+                }
+            } else {
+
+                showSplash = false
+            }
+
     }
 
     LaunchedEffect(Unit) {
