@@ -68,7 +68,7 @@ fun NoInternetScreen(
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xfff5c842)),
                 shape = RoundedCornerShape(10.dp)
             ) {
-                Text("Refresh", color = Color.Black, fontWeight = FontWeight.Bold)
+                Text("Try Again", color = Color.Black, fontWeight = FontWeight.Bold)
             }
         }
     }
